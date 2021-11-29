@@ -1,4 +1,7 @@
-import * as React from "react";
+import React, { Fragment, useContext } from "react";
+
+import { LoggedInContext, ProfileContext, UserContext } from "../../App";
+
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,6 +11,8 @@ export default function BasicMenu({ text, action }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const history = useHistory();
+  const [loggedIn] = useContext(LoggedInContext);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -16,7 +21,7 @@ export default function BasicMenu({ text, action }) {
     console.log("fd");
     history.push(path);
   };
-
+  if (loggedIn) return null;
   return (
     <div>
       <Button

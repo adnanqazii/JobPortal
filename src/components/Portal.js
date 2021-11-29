@@ -2,6 +2,9 @@ import { TextareaAutosize } from "@mui/material";
 import React from "react";
 import Jobs from "./Jobs/Jobs";
 import { useState } from "react";
+import List from "@mui/material/List";
+import { ListItem } from "@mui/material";
+
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -58,12 +61,82 @@ export default function Portal({ user, loggedIn, setJobs, jobs }) {
             />
             <br />
             <TextareaAutosize
+              width="100%"
               required
               label="Description"
               value={inputs.desc || ""}
               onChange={handleChange}
               name="desc"
             />
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <TextField
+                required
+                id="outlined-required"
+                label="Email"
+                value={inputs.email || ""}
+                onChange={handleChange}
+                name="email"
+              />
+              <br />
+
+              <TextField
+                required
+                id="outlined-password-input"
+                label="Password"
+                type="password"
+                autoComplete="current-password"
+                value={inputs.password || ""}
+                onChange={handleChange}
+                name="password"
+              />
+              <br />
+              <TextField
+                required
+                id="outlined-required"
+                label="Name"
+                value={inputs.name || ""}
+                onChange={handleChange}
+                name="name"
+              />
+              <br />
+              <TextField
+                required
+                id="outlined-required"
+                label="Sector"
+                value={inputs.sector || ""}
+                onChange={handleChange}
+                name="sector"
+              />
+            </div>
+
+            <br />
+            <TextField
+              required
+              id="outlined-required"
+              label="Add Department"
+              value={"department" || ""}
+              // onChange={handleDepartment}
+              name="department"
+            />
+            <List>
+              {inputs.departments &&
+                inputs.departments.map((department, i) => {
+                  return <ListItem key={i}>{department}</ListItem>;
+                })}
+            </List>
+            <Button
+
+            // onClick={addDepartment}
+            >
+              Add
+            </Button>
           </div>
 
           <Button variant="contained" onClick={handleSubmit}>

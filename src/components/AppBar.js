@@ -1,4 +1,6 @@
-import * as React from "react";
+import React, { useContext, Fragment } from "react";
+import { LoggedInContext, ProfileContext, UserContext } from "../App";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
@@ -14,12 +16,9 @@ const CustomToolBar = styled(Toolbar)(({ theme }) => ({
   // backgroundColor: theme.globalColor, //can also customize components using theme variables
 }));
 
-export default function ButtonAppBar({
-  loggedIn,
-  drawerWidth,
-  setMobileOpen,
-  name,
-}) {
+export default function ButtonAppBar({ drawerWidth, setMobileOpen, name }) {
+  const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
+  const [user] = useContext(UserContext);
   const handleDrawerToggle = () => {
     setMobileOpen((mobileOpen) => !mobileOpen);
   };
@@ -130,6 +129,29 @@ export default function ButtonAppBar({
             </IconButton>
             {name}
           </Link>
+        )}
+        {user === "employer" && (
+          <Button
+            component={Link}
+            to="/portal"
+            color="inherit"
+            sx={{ display: !loggedIn ? "none" : "inline-flex" }}
+          >
+            Add Job
+          </Button>
+        )}
+        {loggedIn && (
+          <Button
+            component={Link}
+            to="/"
+            color="inherit"
+            sx={{ display: !loggedIn ? "none" : "inline-flex" }}
+            onClick={() => {
+              setLoggedIn(false);
+            }}
+          >
+            Sign Out
+          </Button>
         )}
       </CustomToolBar>
     </AppBar>
