@@ -18,7 +18,8 @@ const CustomToolBar = styled(Toolbar)(({ theme }) => ({
 
 export default function ButtonAppBar({ drawerWidth, setMobileOpen, name }) {
   const [loggedIn, setLoggedIn] = useContext(LoggedInContext);
-  const [user] = useContext(UserContext);
+
+  const [user, setUser] = useContext(UserContext);
   const handleDrawerToggle = () => {
     setMobileOpen((mobileOpen) => !mobileOpen);
   };
@@ -148,6 +149,7 @@ export default function ButtonAppBar({ drawerWidth, setMobileOpen, name }) {
             sx={{ display: !loggedIn ? "none" : "inline-flex" }}
             onClick={() => {
               setLoggedIn(false);
+              setUser("");
             }}
           >
             Sign Out

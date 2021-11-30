@@ -18,7 +18,6 @@ export default function BasicMenu({ text, action }) {
   };
   const handleClose = (path) => {
     setAnchorEl(null);
-    console.log("fd");
     history.push(path);
   };
   if (loggedIn) return null;

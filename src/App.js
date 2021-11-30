@@ -19,7 +19,32 @@ import SearchJobs from "./components/SearchJobs/SearchJobs";
 import EmployerSignup from "./components/EmployerSignup";
 import EmployerSettings from "./components/EmployerSettings/EmployerSettings";
 import ELogin from "./components/Elogin";
-const sample = [{ jobId: 0, title: "title", desc: "desc" }];
+const sample_jobs = [
+  {
+    job_id: 1,
+    job_title: "senior software engineer",
+    job_desc: "Want talented engineer",
+    job_skills: "html,css",
+    job_no_of_positions: 2,
+    job_date: new Date(), //post date,
+    job_salary: 1000,
+    job_years_of_experience: 2,
+    job_career_level: "Experienced Professional",
+    job_company: "AICompany",
+  },
+  {
+    job_id: 2,
+    job_title: "junior software engineer",
+    job_desc: "Want talented engineer",
+    job_skills: "html,css",
+    job_no_of_positions: 2,
+    job_date: new Date(), //post date,
+    job_salary: 1000,
+    job_years_of_experience: 2,
+    job_career_level: "Entry Level",
+    job_company: "AICompany",
+  },
+];
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -55,7 +80,7 @@ function App() {
     lastQualification: "fddfb",
     type: "employee",
 
-    recentJobsApplied: sample,
+    recentJobsApplied: sample_jobs,
   });
   const [profile, setProfile] = profileState;
   // const p =
@@ -66,7 +91,7 @@ function App() {
   const loggedInState = useState(false);
   const [loggedIn, setLoggedIn] = loggedInState;
 
-  const [jobs, setJobs] = useState(sample);
+  const [jobs, setJobs] = useState(sample_jobs);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   // console.log({ userInfo });
@@ -118,7 +143,7 @@ function App() {
                         <Profile />
                       </Route>
                       <Route path="/jobs/:id">
-                        <Resume user={user} />
+                        <Resume user={user} jobs={jobs} />
                       </Route>
                       <Route path="/jobs">
                         <SearchJobs />

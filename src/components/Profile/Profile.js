@@ -7,6 +7,7 @@ import Avatar from "../Avatar/Avatar";
 
 export default function Profile() {
   const [profile] = useContext(ProfileContext);
+  console.log({ profile });
   const [loggedIn] = useContext(LoggedInContext);
   const [user] = useContext(UserContext);
   // console.log({ profile, ProfileContext });
@@ -51,9 +52,9 @@ export default function Profile() {
                                 color: "inherit",
                                 textDecoration: "none",
                               }}
-                              to={`/jobs/${job.jobId}`}
+                              to={`/jobs/${job.job_id}`}
                             >
-                              {job.title}
+                              {job.job_title}
                             </Link>
                           </ListItem>
                           <Divider />
@@ -69,29 +70,7 @@ export default function Profile() {
           <Fragment>
             <ListItem>Name: {profile.name}</ListItem>
             <ListItem>Sector: {profile.sector}</ListItem>
-            <ListItem>Locations:</ListItem>
-            <ListItem>
-              <List>
-                {profile.locations.map((location, i) => (
-                  <Fragment key={i}>
-                    <ListItem>{location}</ListItem>
-                    <Divider />
-                  </Fragment>
-                ))}
-              </List>
-            </ListItem>
-
-            <ListItem>Departments:</ListItem>
-            <ListItem>
-              <List>
-                {profile.departments.map((department, i) => (
-                  <Fragment key={i}>
-                    <ListItem>{department}</ListItem>
-                    <Divider />
-                  </Fragment>
-                ))}
-              </List>
-            </ListItem>
+            <ListItem>Location: {profile.location}</ListItem>
           </Fragment>
         ) : (
           <div>Log in!</div>

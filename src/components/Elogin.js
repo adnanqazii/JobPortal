@@ -62,9 +62,8 @@ export default function ELogin() {
       setProfile({
         //dummy
         name: "name",
-        sector: "sector",
-        departments: ["department1", "department2"],
-        locations: ["location1"],
+        sector: "IT",
+        location: "karachi",
         email: "email",
         pass: "pass",
       });
